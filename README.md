@@ -15,9 +15,9 @@ Both hosts (VPS and Homelab) need to be part of your tailscale network. The VPS 
 
 <details>
 
-<summary>Example yaml acl</summary>
+<summary>Example acl</summary>
 
-```yaml
+```json
 // Example ACLs
 {
 	[...]
@@ -62,7 +62,7 @@ You should configure it as a [restricted nameserver](https://tailscale.com/kb/10
 ### Accept DNS configration on your VPS
 Tailscale on the VPS must be configured to accept DNS (see --accept-dns flag in [cli documentation](https://tailscale.com/kb/1080/cli#set))
 
-# Pitfalls / Headups
+# Pitfalls / Known limitations
 ## Self signed certificates
 If your internal service provides https only connections, you either have to create a trusted certificate (can be issued from a self hosted ca like [step-ca](https://smallstep.com/docs/step-ca/)) or you have to accept the untrusted certificate with your traefik. In the file [internal my_internal_service.yml](internal/traefik/config/my_internal_service.yml) I've added the necessary lines.
 
