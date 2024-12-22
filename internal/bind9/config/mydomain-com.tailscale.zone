@@ -1,0 +1,23 @@
+$TTL 5m
+
+$ORIGIN mydomain.com.
+
+@                       IN      SOA     dns1.mydomain.com.         user.mydomain.com.        (
+                                        2024122200      ; serial
+                                        12h             ; refresh
+                                        15m             ; retry
+                                        1d              ; expiry
+                                        5m              ; minimum ttl
+                                        )
+
+                        IN      NS      dns1.mydomain.com.
+
+dns1                    IN      A       100.72.123.200  ; enter here the tailscale ip of your host which runs bind9
+
+; servers
+prod.srv                IN      A       100.72.231.100  ; enter here the tailscale ip of your vps
+
+ingress.srv             IN      A       100.72.123.200  ; enter here the internal ip of your host which runs traefik
+
+;services
+$INCLUDE /etc/bind/mydomain-com.base.zone

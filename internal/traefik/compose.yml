@@ -1,0 +1,30 @@
+services:
+  traefik:
+    image: 'traefik:latest'
+    restart: unless-stopped
+    container_name: traefik
+    environment:
+      - "OVH_ENDPOINT=ovh-eu"
+      - "OVH_APPLICATION_KEY=MYKEY"
+      - "OVH_APPLICATION_SECRET=MYSECRET"
+      - "OVH_CONSUMER_KEY=MYCONSUMERKEY"
+      - TZ=Europe/Berlin
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "traefik_internal_data:/letsencrypt"
+      - "./traefik.yml:/etc/traefik/traefik.yml"
+      - "./config:/opt/traefik/config"
+
+    networks:
+      - ingress
+      
+volumes:
+  traefik_internal_data:
+
+networks:
+  ingress:
+    external: true

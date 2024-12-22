@@ -1,0 +1,5 @@
+; services
+internal                IN      CNAME	ingress.srv.mydomain.com.
+; just a tip - configure the following records and configure your traefik so only internal (or tailscaled) connections are allowed for the dashboard
+prod.traefik            IN      CNAME   prod.srv.mydomain.com.
+intern.traefik          IN      CNAME   ingress.srv.mydomain.com.

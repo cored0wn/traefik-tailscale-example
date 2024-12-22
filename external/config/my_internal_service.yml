@@ -1,0 +1,13 @@
+http:
+  routers:
+    internal_router_a:
+      service: internal_service_a
+      rule: Host(`internal.mydomain.com`)
+      tls:
+        certResolver: default
+
+  services:
+    internal_service_a:
+      loadBalancer:
+        servers:
+          - url: "https://internal.mydomain.com"
